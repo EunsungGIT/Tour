@@ -1,5 +1,5 @@
 const API_KEY = process.env.NEXT_PUBLIC_TOUR_API_KEY;
-const BASE_URL = 'http://apis.data.go.kr/B551011/KorService2';
+const BASE_URL = 'https://apis.data.go.kr/B551011/KorService2';
 
 /* 검색 */
 export async function searchTours(keyword: string) {
