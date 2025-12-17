@@ -1,0 +1,31 @@
+.searchBox {
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px 0 25px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+.searchBox input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #333;
+}
+.searchBox button {
+  width: 100px;
+  height: 44px;
+  background: #fff;
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.searchBox button:hover {
+  background: #F7323F;
+}

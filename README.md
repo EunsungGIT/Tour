@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📍 Tourch (터치) - 대한민국 구석구석 여행 가이드
 
-## Getting Started
+> **"어디로 떠날지 고민될 때, 터치 한 번으로 시작하는 여행"** > 공공데이터 API를 활용한 국내 관광지 정보 및 찜하기 서비스
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 프로젝트 개요
+- **개발 기간**: 2024.xx ~ 2024.xx (1인 개발)
+- **주요 기능**: 
+  - 한국관광공사 API 연동 실시간 관광지 검색
+  - 카카오 맵 API를 활용한 위치 정보 제공 (단일/복수 마커)
+  - Firebase Auth 기반 회원 시스템
+  - Firestore 기반 사용자별 찜하기(Wishlist) 기능
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Tech Stack
+- **Frontend**: Next.js 14 (App Router), TypeScript, CSS Modules
+- **Backend**: Firebase (Authentication, Firestore)
+- **API**: 공공데이터포털(TourAPI 4.0), Kakao Maps SDK
+- **Deployment**: Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌟 Key Features & Problem Solving
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. 효율적인 데이터 검색 (API 연동)
+- `fetch` API의 `URLSearchParams`를 활용하여 키워드별 맞춤 검색 기능 구현.
+- 서버 사이드 렌더링(SSR)을 활용해 초기 로딩 속도 최적화.
 
-## Learn More
+### 2. 실시간 지도 탐색
+- 상세 페이지의 단일 위치 표시뿐만 아니라, `/map` 페이지에서 여러 장소를 한눈에 볼 수 있는 클러스터링 기반 지도 구현.
 
-To learn more about Next.js, take a look at the following resources:
+### 3. 유저 데이터 관리 (Firebase)
+- `onAuthStateChanged`를 통한 로그인 상태 유지 및 헤더 UI 분기 처리.
+- `onSnapshot` 리스너를 사용하여 찜 목록의 실시간 상태 동기화 구현.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. 퍼블리싱 및 반응형 디자인
+- Mobile-First 디자인을 적용하여 다양한 기기에서 최적화된 UX 제공.
+- CSS Modules를 활용하여 스타일 충돌 방지 및 유지보수성 향상.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📸 Screen Shots
+| 메인 페이지 | 지도 탐색 | 상세 정보 | 찜 목록 |
+| :---: | :---: | :---: | :---: |
+| (이미지 링크) | (이미지 링크) | (이미지 링크) | (이미지 링크) |

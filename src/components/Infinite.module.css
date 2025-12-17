@@ -1,0 +1,49 @@
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+.noCard {
+    text-align: center;
+    padding: 100px 0;
+    font-size: 18px;
+    color: #999;
+}
+
+.actionArea {
+    padding: 50px 0;
+    text-align: center;
+}
+.loadMoreBtn {
+    padding: 15px 60px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.loadMoreBtn:hover {
+    background-color: #f8f8f8;
+    border-color: #F7323F;
+    color: #F7323F;
+}
+.noMore {
+    color: #999;
+    font-size: 15px;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+    .cardGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .cardGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}

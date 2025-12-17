@@ -1,0 +1,71 @@
+.footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #eee;
+  padding: 60px 0 30px;
+  color: #666;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.brand {
+  max-width: 300px;
+}
+.logo {
+  font-size: 24px;
+  color: #F7323F;
+  font-weight: 900;
+  margin-bottom: 15px;
+}
+.desc {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.links {
+  display: flex;
+  gap: 60px;
+}
+.linkGroup h4 {
+  color: #333;
+  margin-bottom: 15px;
+}
+.linkGroup a, .linkGroup span {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #888;
+}
+.linkGroup a:hover {
+  color: #F7323F;
+}
+.bottom {
+  border-top: 1px solid #e9ecef;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #999;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .top {
+    flex-direction: column;
+  }
+  .links {
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center; }
+}

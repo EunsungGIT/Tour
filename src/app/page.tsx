@@ -1,66 +1,89 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import Card from '@/components/Card';
+import SearchInput from '@/components/SearchInput';
+import Link from "next/link";
+import { getPopularTours } from '@/lib/api';
 
-export default function Home() {
+interface TourItem {
+  contentid: string;
+  title: string;
+  firstimage: string;
+  addr1: string;
+}
+
+export default async function Home() {
+  /* 인기 데이터 */
+  const tours: TourItem[] = await getPopularTours();
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main>
+      {/* 검색 */}
+      <section className={styles.intro}>
+        <div className={styles.search}>
+          <h2>어디로 여행을 떠나시나요?</h2>
+          <SearchInput /> 
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* 메뉴 */}
+      <section className={styles.category}>
+        <div className={styles.categoryContainer}>
+          <Link href="/list?type=15" className={styles.menuItem}>
+            <div className={styles.iconCircle}>🎡</div>
+            <span>축제</span>
+          </Link>
+          <Link href="/list?type=14" className={styles.menuItem}>
+            <div className={styles.iconCircle}>🏟️</div>
+            <span>문화시설</span>
+          </Link>
+          <Link href="/list?type=12" className={styles.menuItem}>
+            <div className={styles.iconCircle}>🏖️</div>
+            <span>관광지</span>
+          </Link>
+          <Link href="/list?type=38" className={styles.menuItem}>
+            <div className={styles.iconCircle}>🛍️</div>
+            <span>쇼핑</span>
+          </Link>
+          <Link href="/list?type=25" className={styles.menuItem}>
+            <div className={styles.iconCircle}>🗺️</div>
+            <span>여행코스</span>
+          </Link>
+          <Link href="/list?type=28" className={styles.menuItem}>
+            <div className={styles.iconCircle}>🏂</div>
+            <span>레포츠</span>
+          </Link>
+          <Link href="/list?type=32" className={styles.menuItem}>
+            <div className={styles.iconCircle}>🏨</div>
+            <span>숙박</span>
+          </Link>
+          <Link href="/list?type=39" className={styles.menuItem}>
+            <div className={styles.iconCircle}>🍚</div>
+            <span>음식점</span>
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* 인기 */}
+      <section className={styles.recommend}>
+        <h3>✈️ 지금 인기 있는 관광지</h3>
+        <div className={styles.cardGrid}>
+          {tours.length > 0 ? (
+            tours.map((tour) => (
+              <Card 
+                key={tour.contentid}
+                id={tour.contentid}
+                title={tour.title}
+                image={tour.firstimage}
+                address={tour.addr1}
+                contentTypeId="12"
+              />
+            ))
+          ) : (
+            <p>관광 정보를 불러오는 중입니다...</p>
+          )}
+        </div>
+      </section>
+    </main>
   );
 }

@@ -1,0 +1,55 @@
+.header {
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 1000;
+}
+.container {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.nav a {
+    color: #000;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+.nav a:hover {
+    background: #f8f8f8;
+}
+.userName {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.logoutBtn {
+    font-weight: bold;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+    transition: 0.2s;
+    border: 1px solid skyblue;
+    color: skyblue !important;
+    background: none;
+}
+.logoutBtn:hover {
+    background: #f8f8f8;
+}
+.loginButton {
+    border: 1px solid skyblue;
+    color: skyblue !important;
+}
