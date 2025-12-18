@@ -19,6 +19,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    z-index: 1000;
 }
 .nav a {
     color: #000;
@@ -45,6 +46,7 @@
     border: 1px solid skyblue;
     color: skyblue !important;
     background: none;
+    text-align: center;
 }
 .logoutBtn:hover {
     background: #f8f8f8;
@@ -52,4 +54,85 @@
 .loginButton {
     border: 1px solid skyblue;
     color: skyblue !important;
+    text-align: center;
+}
+
+.menuToggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+.menuToggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    border-radius: 50px;
+    background-color: #7a7a7a;
+    transition: all 0.3s;
+}
+
+/* 반응형 */
+@media (max-width: 1200px) {
+    .header {
+        padding: 0 20px;
+    }
+}
+@media (max-width: 768px) {
+    .header {
+        height: 60px;
+    }
+    .container h1 a img {
+        width: 80px !important;
+    }
+    .menuToggle {
+        display: flex;
+    }
+    .menuToggle.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menuToggle.open span:nth-child(2) {
+        opacity: 0;
+    }
+    .menuToggle.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: #fff;
+        flex-direction: column;
+        padding: 100px 40px;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+    .nav.navActive {
+        right: 0;
+    }
+    .nav a,
+    .logoutBtn {
+        font-size: 1.2rem;
+        width: 100%;
+    }
+    .userName {
+        margin-top: 20px;
+        font-size: 1rem;
+    }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+    }
 }

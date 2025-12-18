@@ -79,7 +79,27 @@
 }
 
 /* 반응형 */
+@media (max-width: 1200px) {
+  .search {
+    padding: 0 20px;
+  }
+  .search h2 {
+    font-size: 30px;
+  }
+  .recommend {
+    padding: 40px 20px;
+  }
+  .category {
+    padding: 40px 20px;
+  }
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 @media (max-width: 768px) {
+  .intro {
+    height: 300px;
+  }
   .hero h2 {
     font-size: 24px;
   }
@@ -87,6 +107,8 @@
     grid-template-columns: repeat(2, 1fr);
   }
   .categoryContainer {
-    overflow-x: auto; justify-content: flex-start; gap: 20px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 40px;
   }
 }

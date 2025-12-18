@@ -1,15 +1,20 @@
 const API_KEY = process.env.NEXT_PUBLIC_TOUR_API_KEY;
 const BASE_URL = 'https://apis.data.go.kr/B551011/KorService2';
 
+/* 공통 파라미터 */
+const getCommonParams = () => ({
+    serviceKey: API_KEY as string,
+    MobileOS: 'ETC',
+    MobileApp: 'Tourch',
+    _type: 'json',
+});
+
 /* 검색 */
 export async function searchTours(keyword: string) {
     const params = new URLSearchParams({
-        serviceKey: API_KEY as string,
+        ...getCommonParams(),
         numOfRows: '20',
         pageNo: '1',
-        MobileOS: 'ETC',
-        MobileApp: 'Tourch',
-        _type: 'json',
         arrange: 'Q',
         keyword: keyword,
     });
@@ -19,7 +24,7 @@ export async function searchTours(keyword: string) {
             cache: 'no-store'
         });
         const data = await res.json();
-        return data.response.body.items.item || [];
+        return data.response?.body?.items?.item || [];
     } catch (error) {
         console.error("검색 에러:", error);
         return [];
@@ -29,27 +34,21 @@ export async function searchTours(keyword: string) {
 /* 인기 */
 export async function getPopularTours() {
     const params = new URLSearchParams({
-        serviceKey: API_KEY as string,
+        ...getCommonParams(),
         numOfRows: '6',
         pageNo: '1',
-        MobileOS: 'ETC',
-        MobileApp: 'Tourch',
-        _type: 'json',
         arrange: 'Q',
         contentTypeId: '12',
     });
 
     try {
         const res = await fetch(`${BASE_URL}/areaBasedList2?${params.toString()}`, {
-        next: { revalidate: 3600 }
+            next: { revalidate: 3600 }
         });
-        
-        if (!res.ok) throw new Error('데이터를 불러오지 못했습니다.');
-        
         const data = await res.json();
-        return data.response.body.items.item || [];
+        return data.response?.body?.items?.item || [];
     } catch (error) {
-        console.error(error);
+        console.error("인기 데이터 호출 에러:", error);
         return [];
     }
 }
@@ -57,24 +56,22 @@ export async function getPopularTours() {
 /* 목록 */
 export async function getCategoryTours(contentTypeId: string, pageNo: number = 1) {
     const params = new URLSearchParams({
-        serviceKey: API_KEY as string,
+        ...getCommonParams(),
         numOfRows: '12',
         pageNo: pageNo.toString(),
-        MobileOS: 'ETC',
-        MobileApp: 'Tourch',
-        _type: 'json',
         arrange: 'Q',
-        contentTypeId: contentTypeId,
     });
 
-    if (!contentTypeId) params.delete('contentTypeId');
+    if (contentTypeId) params.append('contentTypeId', contentTypeId);
 
     try {
-        const res = await fetch(`${BASE_URL}/areaBasedList2?${params.toString()}`);
-        if (!res.ok) throw new Error('데이터 로드 실패');
+        const res = await fetch(`${BASE_URL}/areaBasedList2?${params.toString()}`, {
+            next: { revalidate: 3600 }
+        });
         const data = await res.json();
-        return data.response.body.items.item || [];
+        return data.response?.body?.items?.item || [];
     } catch (error) {
+        console.error("목록 호출 에러:", error);
         return [];
     }
 }
@@ -82,10 +79,7 @@ export async function getCategoryTours(contentTypeId: string, pageNo: number = 1
 /* 상세 페이지 */
 export async function getTourDetail(contentId: string) {
     const params = new URLSearchParams({
-        serviceKey: API_KEY as string,
-        MobileOS: 'ETC',
-        MobileApp: 'Tourch',
-        _type: 'json',
+        ...getCommonParams(),
         contentId: contentId,
     });
 
@@ -94,9 +88,33 @@ export async function getTourDetail(contentId: string) {
             next: { revalidate: 3600 }
         });
         const data = await res.json();
-        return data.response.body.items.item[0];
+        return data.response?.body?.items?.item?.[0] || null;
     } catch (error) {
         console.error("상세 정보 호출 에러:", error);
         return null;
+    }
+}
+
+/* 위치 */
+export async function getLocationBasedTours(lat: number, lng: number) {
+    const params = new URLSearchParams({
+        ...getCommonParams(),
+        numOfRows: '20',
+        pageNo: '1',
+        arrange: 'A',
+        mapX: lng.toString(),
+        mapY: lat.toString(),
+        radius: '5000',
+    });
+
+    try {
+        const res = await fetch(`${BASE_URL}/locationBasedList2?${params.toString()}`, {
+            cache: 'no-store'
+        });
+        const data = await res.json();
+        return data.response?.body?.items?.item || [];
+    } catch (error) {
+        console.error("위치 기반 호출 에러:", error);
+        return [];
     }
 }

@@ -56,6 +56,11 @@
 }
 
 /* 반응형 */
+@media (max-width: 1200px) {
+  .footer {
+    padding: 40px 20px 30px;
+  }
+}
 @media (max-width: 768px) {
   .top {
     flex-direction: column;
@@ -67,5 +72,6 @@
   .bottom {
     flex-direction: column;
     gap: 10px;
-    text-align: center; }
+    text-align: center;
+  }
 }

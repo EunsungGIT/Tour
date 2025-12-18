@@ -4,16 +4,24 @@
   padding: 50px 0;
 }
 .searchSection {
-    background-color: #f8f9fa;
+    background-color: #fff;
     padding: 40px 20px;
-    border-radius: 16px;
-    margin-bottom: 40px;
+    border-bottom: 1px solid #eee;
     display: flex;
     justify-content: center;
+    margin-bottom: 40px;
 }
 .searchInner {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.searchTitle {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
 }
 .title {
   font-size: 24px;
@@ -39,19 +47,27 @@
   margin-top: 20px;
 }
 .noCard p {
+  line-height: 1.4;
   font-size: 18px;
   color: #666;
   margin-bottom: 20px;
+  padding: 0 20px;
 }
 
 /* 반응형 */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
+  .container {
+    padding: 50px 20px;
+  }
   .cardGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
+  .searchSection {
+    padding: 20px 0 40px;
+  }
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;

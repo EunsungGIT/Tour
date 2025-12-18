@@ -15,6 +15,7 @@ export default async function SearchPage({
         <div className={styles.container}>
             <section className={styles.searchSection}>
                 <div className={styles.searchInner}>
+                    <h2 className={styles.searchTitle}>어디로 떠날까요?</h2>
                     <SearchInput defaultValue={keyword} /> 
                 </div>
             </section>
@@ -42,7 +43,7 @@ export default async function SearchPage({
                 </div>
             ) : (
                 <div className={styles.noCard}>
-                    <p>검색 결과가 없습니다. 다른 검색어를 입력해 보세요!</p>
+                    <p>검색 결과가 없습니다.<br />다른 검색어를 입력해 보세요!</p>
                 </div>
             )}
         </div>

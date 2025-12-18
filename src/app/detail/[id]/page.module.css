@@ -68,3 +68,15 @@
     color: #0070f3;
     text-decoration: underline;
 }
+
+/* 반응형 */
+@media (max-width: 1200px) {
+    .inner {
+        padding: 40px 20px;
+    }
+}
+@media (max-width: 768px) {
+    .value {
+        line-height: 1.4;
+    }
+}

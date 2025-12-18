@@ -22,6 +22,11 @@
 }
 
 /* 반응형 */
+@media (max-width: 1200px) {
+  .container {
+    padding: 40px 20px;
+  }
+}
 @media (max-width: 768px) {
   .listTitle {
     font-size: 22px;

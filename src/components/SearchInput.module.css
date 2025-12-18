@@ -29,3 +29,10 @@
 .searchBox button:hover {
   background: #F7323F;
 }
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .searchBox button {
+    background: #F7323F;
+  }
+}
