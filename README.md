@@ -55,7 +55,7 @@
 ## 📸 Screen Shots
 | 메인 페이지 | 내 주변 탐색 (지도) | 검색 결과 | 상세 페이지 |
 | :---: | :---: | :---: | :---: |
-| <img src="/images/read/main.png" width="200" /> | <img src="/images/read/map.png" width="200" /> | <img src="/images/read/search.png" width="200" /> | <img src="/images/read/detail.png" width="200" /> |
+| <img src="./public/images/read/main.png" width="200" /> | <img src="./public/images/read/map.png" width="200" /> | <img src="./public/images/read/search.png" width="200" /> | <img src="./public/images/read/detail.png" width="200" /> |
 
 ---
 
