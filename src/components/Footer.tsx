@@ -1,4 +1,7 @@
+/* NEXT */
 import Link from 'next/link';
+
+/* CSS */
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -10,7 +13,7 @@ export default function Footer() {
             <h2 className={styles.logo}>Tourch</h2>
             <p className={styles.desc}>대한민국 구석구석, 당신의 발길이 닿는 곳마다 새로운 이야기가 시작됩니다.</p>
           </div>
-          
+
           <div className={styles.links}>
             <div className={styles.linkGroup}>
               <h4>Explore</h4>
@@ -26,6 +29,7 @@ export default function Footer() {
             </div>
             <div className={styles.linkGroup}>
               <h4>Contact</h4>
+              {/* 외부링크는 a태그 사용 */}
               <a href="https://github.com/EunsungGIT" target="_blank">GitHub</a>
               <a href="https://your-blog.com" target="_blank">Notion</a>
             </div>

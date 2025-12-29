@@ -1,9 +1,14 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import styles from './page.module.css';
+/* NEXT */
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+/* REACT */
+import { useState } from 'react';
+
+/* CSS */
+import styles from './page.module.css';
 
 /* FIREBASE */
 import { auth, db } from '@/lib/firebase';
@@ -11,25 +16,33 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
 export default function SignupPage() {
+  /* 이메일, 비밀번호, 이름의 상태 */
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
+
+  /* 에러 메세지 상태 */
   const [error, setError] = useState('');
+
+  /* 라우터 */
   const router = useRouter();
 
   const handleSignup = async (e: React.FormEvent) => {
+    /* 새로고침 방지 */
     e.preventDefault();
+
+    /* 이전의 에러 메세지 초기화 */
     setError('');
 
     try {
-      // 1. Firebase Auth에 계정 생성
+      /* 파이어베이스에 새로운 계정 생성 */
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // 2. 사용자 프로필에 닉네임 업데이트
+      /* 프로필 정보에 이름 저장 */
       await updateProfile(user, { displayName: nickname });
 
-      // 3. Firestore에 사용자 기본 정보 저장 (나중에 찜하기 목록 등을 담을 용도)
+      /* 파이어스토어 DB에 정보 저장 */
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         email: email,
@@ -38,11 +51,13 @@ export default function SignupPage() {
       });
 
       alert('회원가입이 완료되었습니다!');
-      router.push('/login'); // 가입 성공 시 로그인 페이지로 이동
+      router.push('/login');
     } catch (err: any) {
-      // 에러 처리 (한글로 변환해주면 더 좋음)
+      /* 이메일 에러 */
       if (err.code === 'auth/email-already-in-use') setError('이미 사용 중인 이메일입니다.');
+      /* 비밀번호 갯수 에러 */
       else if (err.code === 'auth/weak-password') setError('비밀번호를 6자리 이상 입력해주세요.');
+      /* 오류 */
       else setError('회원가입 중 오류가 발생했습니다.');
     }
   };
@@ -52,26 +67,26 @@ export default function SignupPage() {
       <div className={styles.loginBox}>
         <h1 className={styles.logo}>Tourch</h1>
         <p className={styles.title}>새로운 여행을 시작해보세요!</p>
-        
+
         <form onSubmit={handleSignup}>
-          <input 
+          <input
             type="text" placeholder="닉네임" required
             className={styles.input} value={nickname}
             onChange={(e) => setNickname(e.target.value)}
           />
-          <input 
+          <input
             type="email" placeholder="이메일 주소" required
             className={styles.input} value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <input 
+          <input
             type="password" placeholder="비밀번호 (6자 이상)" required
             className={styles.input} value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          
+
           {error && <p className={styles.errorMsg}>{error}</p>}
-          
+
           <button type="submit" className={styles.loginBtn}>회원가입 완료</button>
         </form>
 

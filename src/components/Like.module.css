@@ -8,9 +8,11 @@
   top: 10px;
   right: 10px;
 }
+
 .likeBtn:hover {
   transform: scale(1.2);
 }
+
 .likeBtn.active {
   color: #ff2d46;
 }

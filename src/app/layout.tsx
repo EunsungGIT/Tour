@@ -1,14 +1,19 @@
+/* NEXT */
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
+
+/* CSS */
 import "./globals.css";
+
+/* 컴포넌트 */
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const pretendard = localFont({
-  src: '../../public/fonts/PretendardVariable.woff2', 
-  weight: '45 920', 
-  display: 'swap', 
-  variable: '--font-pretendard', 
+  src: '../../public/fonts/PretendardVariable.woff2',
+  weight: '45 920',
+  display: 'swap',
+  variable: '--font-pretendard',
 });
 
 export const metadata: Metadata = {
@@ -22,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${pretendard.variable}`}>
-      <body>
+    <html lang="ko">
+      <body className={`${pretendard.variable}`}>
         <Header />
         {children}
         <Footer />

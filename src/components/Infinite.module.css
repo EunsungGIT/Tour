@@ -3,6 +3,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
 }
+
 .noCard {
     text-align: center;
     padding: 100px 0;
@@ -14,6 +15,7 @@
     padding: 50px 0;
     text-align: center;
 }
+
 .loadMoreBtn {
     padding: 15px 60px;
     background-color: #fff;
@@ -24,11 +26,13 @@
     cursor: pointer;
     transition: all 0.2s;
 }
+
 .loadMoreBtn:hover {
     background-color: #f8f8f8;
     border-color: #F7323F;
     color: #F7323F;
 }
+
 .noMore {
     color: #999;
     font-size: 15px;

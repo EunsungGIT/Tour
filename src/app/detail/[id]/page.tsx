@@ -1,23 +1,32 @@
+/* NEXT */
 import Image from 'next/image';
+
+/* CSS */
 import styles from './page.module.css';
+
+/* API */
 import { getTourDetail } from '@/lib/api';
+
+/* 컴포넌트 */
 import DetailMap from '@/components/DetailMap';
 
+/* 비동기 파라미터 */
 export default async function DetailPage({ params }: { params: Promise<{ id: string }> }) {
-    /* 파라미터 */
+    /* id 값을 api로 요청 후 받은 데이터를 저장 */
     const { id } = await params;
     const data = await getTourDetail(id);
 
+    /* 데이터가 없을 경우 메세지 */
     if (!data) return <div className={styles.error}>데이터를 찾을 수 없습니다.</div>;
 
     return (
         <div className={styles.container}>
             {/* 배너 */}
             <div className={styles.hero}>
-                <Image 
-                    src={data.firstimage || '/img/icons/logo.png'} 
-                    alt={data.title} 
-                    fill 
+                <Image
+                    src={data.firstimage || '/img/icons/logo.png'}
+                    alt={data.title}
+                    fill
                     priority
                     className={styles.mainImage}
                 />
@@ -54,6 +63,8 @@ export default async function DetailPage({ params }: { params: Promise<{ id: str
                 </section>
                 <section className={styles.section}>
                     <h2 className={styles.sectionTitle}>위치 보기</h2>
+
+                    {/* 지도로 필요한 위도와 경도 값 전송 */}
                     <DetailMap mapX={data.mapx} mapY={data.mapy} title={data.title} />
                 </section>
             </div>

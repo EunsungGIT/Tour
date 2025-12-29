@@ -1,3 +1,4 @@
+/* 공통 키와 URL */
 const API_KEY = process.env.NEXT_PUBLIC_TOUR_API_KEY;
 const BASE_URL = 'https://apis.data.go.kr/B551011/KorService2';
 
@@ -15,6 +16,7 @@ export async function searchTours(keyword: string) {
         ...getCommonParams(),
         numOfRows: '20',
         pageNo: '1',
+        /* 조회순으로 인기있는 데이터만 가져옴 */
         arrange: 'Q',
         keyword: keyword,
     });
@@ -26,7 +28,7 @@ export async function searchTours(keyword: string) {
         const data = await res.json();
         return data.response?.body?.items?.item || [];
     } catch (error) {
-        console.error("검색 에러:", error);
+        console.error("검색 호출 에러:", error);
         return [];
     }
 }

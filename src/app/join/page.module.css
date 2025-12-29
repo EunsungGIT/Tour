@@ -6,6 +6,7 @@
   background-color: #f8f8f8;
   padding: 20px;
 }
+
 .loginBox {
   width: 100%;
   max-width: 400px;
@@ -15,22 +16,26 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   text-align: center;
 }
+
 .logo {
   font-size: 32px;
   font-weight: 900;
-  color: #ff2d46; 
+  color: #ff2d46;
   margin-bottom: 10px;
   letter-spacing: -1px;
 }
+
 .title {
   font-size: 16px;
   color: #666;
   margin-bottom: 30px;
 }
+
 .inputGroup {
   margin-bottom: 20px;
   text-align: left;
 }
+
 .input {
   width: 100%;
   height: 50px;
@@ -42,9 +47,11 @@
   outline: none;
   transition: border-color 0.2s;
 }
+
 .input:focus {
   border-color: #ff2d46;
 }
+
 .errorMsg {
   color: #ff2d46;
   font-size: 13px;
@@ -52,6 +59,7 @@
   text-align: left;
   padding-left: 5px;
 }
+
 .loginBtn {
   width: 100%;
   height: 50px;
@@ -65,15 +73,18 @@
   margin-top: 10px;
   transition: background 0.2s;
 }
+
 .loginBtn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
 .links {
   margin-top: 25px;
   font-size: 14px;
   color: #666;
 }
+
 .links a {
   color: #333;
   font-weight: 700;

@@ -1,10 +1,17 @@
-import Image from "next/image";
+/* CSS */
 import styles from "./page.module.css";
+
+/* 컴포넌트 */
 import Card from '@/components/Card';
 import SearchInput from '@/components/SearchInput';
+
+/* NEXT */
 import Link from "next/link";
+
+/* API */
 import { getPopularTours } from '@/lib/api';
 
+/* 인기 데이터 타입 지정 */
 interface TourItem {
   contentid: string;
   title: string;
@@ -22,7 +29,7 @@ export default async function Home() {
       <section className={styles.intro}>
         <div className={styles.search}>
           <h2>어디로 여행을 떠나시나요?</h2>
-          <SearchInput /> 
+          <SearchInput />
         </div>
       </section>
 
@@ -70,7 +77,7 @@ export default async function Home() {
         <div className={styles.cardGrid}>
           {tours.length > 0 ? (
             tours.map((tour) => (
-              <Card 
+              <Card
                 key={tour.contentid}
                 id={tour.contentid}
                 title={tour.title}

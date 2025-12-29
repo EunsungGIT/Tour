@@ -1,5 +1,7 @@
+/* CSS */
 import styles from './loading.module.css';
 
+/* 로딩 페이지 */
 export default function Loading() {
     return (
         <div className={styles.loadingWrapper}>

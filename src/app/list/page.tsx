@@ -1,22 +1,22 @@
+/* API */
 import { getCategoryTours } from '@/lib/api';
+
+/* CSS */
 import styles from './page.module.css';
+
+/* 컴포넌트 */
 import Infinite from '@/components/Infinite';
 
-export default async function ListPage({
-    searchParams,
-}: {
-    searchParams: Promise<{ type?: string }>;
-}) {
-    /* 파라미터 */
-    const params = await searchParams; 
+/* 비동기 파라미터로 숫자코드 확인 */
+export default async function ListPage({ searchParams }: { searchParams: Promise<{ type?: string }>; }) {
+    /* 숫자코드 파라미터 수집 */
+    const params = await searchParams;
     const contentTypeId = params.type || '';
-    
-    /* 데이터 */
-    const tours = await getCategoryTours(contentTypeId);
 
-    /* 더보기 */
+    /* 숫자코드와 첫번째 페이지 번호를 보내 호출받은 데이터 */
     const initialTours = await getCategoryTours(contentTypeId, 1);
 
+    /* 숫자코드에 따라 타이틀 매핑 */
     const titleMap: { [key: string]: string } = {
         '': '📚 전체',
         '12': '🏖️ 관광지',

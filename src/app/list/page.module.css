@@ -3,17 +3,20 @@
   margin: 0 auto;
   padding: 40px 0;
 }
+
 .listHeader {
   margin-bottom: 30px;
   padding-bottom: 20px;
   border-bottom: 2px solid #333;
 }
+
 .listTitle {
   font-size: 28px;
   font-weight: 800;
   color: #111;
   letter-spacing: -0.5px;
 }
+
 .count {
   font-size: 16px;
   color: #666;
@@ -27,6 +30,7 @@
     padding: 40px 20px;
   }
 }
+
 @media (max-width: 768px) {
   .listTitle {
     font-size: 22px;

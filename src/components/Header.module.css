@@ -7,6 +7,7 @@
     background: #fff;
     z-index: 1000;
 }
+
 .container {
     max-width: 1200px;
     height: 100%;
@@ -15,12 +16,14 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .nav {
     display: flex;
     align-items: center;
     gap: 20px;
     z-index: 1000;
 }
+
 .nav a {
     color: #000;
     font-weight: bold;
@@ -29,14 +32,17 @@
     border-radius: 10px;
     transition: 0.2s;
 }
+
 .nav a:hover {
     background: #f8f8f8;
 }
+
 .userName {
     display: flex;
     align-items: center;
     gap: 5px;
 }
+
 .logoutBtn {
     font-weight: bold;
     padding: 10px;
@@ -48,9 +54,11 @@
     background: none;
     text-align: center;
 }
+
 .logoutBtn:hover {
     background: #f8f8f8;
 }
+
 .loginButton {
     border: 1px solid skyblue;
     color: skyblue !important;
@@ -68,6 +76,7 @@
     cursor: pointer;
     z-index: 1001;
 }
+
 .menuToggle span {
     display: block;
     width: 100%;
@@ -83,25 +92,32 @@
         padding: 0 20px;
     }
 }
+
 @media (max-width: 768px) {
     .header {
         height: 60px;
     }
+
     .container h1 a img {
         width: 80px !important;
     }
+
     .menuToggle {
         display: flex;
     }
+
     .menuToggle.open span:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
+
     .menuToggle.open span:nth-child(2) {
         opacity: 0;
     }
+
     .menuToggle.open span:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
+
     .nav {
         position: fixed;
         top: 0;
@@ -112,27 +128,31 @@
         flex-direction: column;
         padding: 100px 40px;
         transition: right 0.3s ease-in-out;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     }
+
     .nav.navActive {
         right: 0;
     }
+
     .nav a,
     .logoutBtn {
         font-size: 1.2rem;
         width: 100%;
     }
+
     .userName {
         margin-top: 20px;
         font-size: 1rem;
     }
+
     .overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100vh;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         z-index: 999;
     }
 }

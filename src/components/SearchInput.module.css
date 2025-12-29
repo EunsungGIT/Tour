@@ -8,6 +8,7 @@
   padding: 0 10px 0 25px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
+
 .searchBox input {
   flex: 1;
   border: none;
@@ -15,6 +16,7 @@
   font-size: 16px;
   color: #333;
 }
+
 .searchBox button {
   width: 100px;
   height: 44px;
@@ -26,6 +28,7 @@
   cursor: pointer;
   transition: 0.2s;
 }
+
 .searchBox button:hover {
   background: #F7323F;
 }

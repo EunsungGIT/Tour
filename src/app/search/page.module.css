@@ -3,42 +3,49 @@
   margin: 0 auto;
   padding: 50px 0;
 }
+
 .searchSection {
-    background-color: #fff;
-    padding: 40px 20px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
+  background-color: #fff;
+  padding: 40px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
 }
+
 .searchInner {
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
+
 .searchTitle {
-    font-size: 24px;
-    font-weight: 700;
-    color: #333;
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
 }
+
 .title {
   font-size: 24px;
   font-weight: 700;
   color: #333;
   margin-bottom: 20px;
 }
+
 .title span {
   color: #F7323F;
   font-weight: 800;
   font-size: 24px;
 }
+
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 25px;
 }
+
 .noCard {
   text-align: center;
   padding: 120px 0;
@@ -46,6 +53,7 @@
   border-radius: 15px;
   margin-top: 20px;
 }
+
 .noCard p {
   line-height: 1.4;
   font-size: 18px;
@@ -59,6 +67,7 @@
   .container {
     padding: 50px 20px;
   }
+
   .cardGrid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -68,10 +77,12 @@
   .searchSection {
     padding: 20px 0 40px;
   }
+
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
+
   .title {
     font-size: 20px;
   }
