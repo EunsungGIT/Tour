@@ -1,0 +1,25 @@
+.mySwiper {
+    padding: 10px 20px 40px 20px !important;
+}
+
+.swiper-pagination-bullet {
+    width: 20px !important;
+    height: 4px !important;
+    border-radius: 2px !important;
+    background: #ddd !important;
+    opacity: 1 !important;
+    transition: all 0.3s !important;
+}
+
+.swiper-pagination-bullet-active {
+    width: 40px !important;
+    background: #ff4d4f !important;
+}
+
+.mySwiper .swiper-slide {
+    transition: transform 0.3s ease;
+}
+
+.mySwiper .swiper-slide:hover {
+    transform: translateY(-8px);
+}
