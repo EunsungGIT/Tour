@@ -13,7 +13,7 @@ import Link from "next/link";
 /* API */
 import { getPopularTours, getToursByCategory } from '@/lib/api';
 
-/* 인기 데이터 타입 */
+/* 인기 데이터 타입 지정 */
 interface TourItem {
   contentid: string;
   title: string;
