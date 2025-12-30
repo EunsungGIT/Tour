@@ -50,7 +50,7 @@ export default function SignupPage() {
         createdAt: new Date().toISOString(),
       });
 
-      alert('회원가입이 완료되었습니다!');
+      alert('회원가입이 완료되었습니다.');
       router.push('/login');
     } catch (err: any) {
       /* 이메일 에러 */

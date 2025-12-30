@@ -1,89 +1,99 @@
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 0 24px 80px;
 }
 
 .searchSection {
-  background-color: #fff;
-  padding: 40px 20px;
-  border-bottom: 1px solid #eee;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #f8f8f8;
+  padding: 60px 20px;
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 .searchInner {
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  gap: 24px;
 }
 
 .searchTitle {
-  font-size: 24px;
-  font-weight: 700;
-  color: #333;
+  font-size: 28px;
+  font-weight: 900;
+  color: #1a1a1a;
+  letter-spacing: -1px;
 }
 
 .title {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
-  color: #333;
-  margin-bottom: 20px;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .title span {
   color: #F7323F;
-  font-weight: 800;
-  font-size: 24px;
+  font-weight: 900;
 }
 
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
+  gap: 32px 24px;
 }
 
 .noCard {
   text-align: center;
-  padding: 120px 0;
-  background-color: #f9f9f9;
-  border-radius: 15px;
+  padding: 100px 0;
+  background-color: #fff;
+  border: 1px dashed #e5e5e5;
+  border-radius: 20px;
   margin-top: 20px;
 }
 
 .noCard p {
-  line-height: 1.4;
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 20px;
-  padding: 0 20px;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #999;
+  font-weight: 500;
 }
 
 /* 반응형 */
-@media (max-width: 1200px) {
-  .container {
-    padding: 50px 20px;
-  }
-
+@media (max-width: 1024px) {
   .cardGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding-bottom: 40px;
+  }
+
   .searchSection {
-    padding: 20px 0 40px;
+    padding: 40px 20px;
+    margin-bottom: 40px;
+  }
+
+  .searchTitle {
+    font-size: 22px;
   }
 
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 24px 12px;
   }
 
   .title {
-    font-size: 20px;
+    font-size: 18px;
   }
 }

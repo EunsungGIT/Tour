@@ -1,91 +1,101 @@
 .footer {
-  background-color: #f8f9fa;
+  background-color: #f8f8f8;
   border-top: 1px solid #eee;
-  padding: 60px 0 30px;
+  padding: 80px 0 40px;
   color: #666;
+  font-family: 'Pretendard', sans-serif;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 0 24px;
 }
 
 .top {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 50px;
 }
 
 .brand {
-  max-width: 300px;
+  max-width: 350px;
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 26px;
   color: #F7323F;
   font-weight: 900;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
+  letter-spacing: -0.8px;
 }
 
 .desc {
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: #777;
+  word-break: keep-all;
 }
 
 .links {
   display: flex;
-  gap: 60px;
+  gap: 80px;
 }
 
 .linkGroup h4 {
   color: #333;
-  margin-bottom: 15px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .linkGroup a,
 .linkGroup span {
   display: block;
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   text-decoration: none;
   color: #888;
+  transition: all 0.2s;
 }
 
 .linkGroup a:hover {
   color: #F7323F;
+  text-decoration: underline;
 }
 
 .bottom {
-  border-top: 1px solid #e9ecef;
-  padding-top: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 13px;
   color: #999;
 }
 
-/* 반응형 */
-@media (max-width: 1200px) {
-  .footer {
-    padding: 40px 20px 30px;
-  }
+.source {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  padding: 4px 12px;
+  border-radius: 4px;
+  color: #888;
+  font-weight: 500;
 }
 
+/* 반응형 */
 @media (max-width: 768px) {
-  .top {
-    flex-direction: column;
-  }
-
   .links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
-    flex-wrap: wrap;
   }
 
   .bottom {
     flex-direction: column;
-    gap: 10px;
-    text-align: center;
+    align-items: flex-start;
+    gap: 15px;
   }
 }

@@ -33,7 +33,7 @@ export async function searchTours(keyword: string) {
     }
 }
 
-/* 인기 */
+/* 인기 관광지 */
 export async function getPopularTours() {
     const params = new URLSearchParams({
         ...getCommonParams(),
@@ -51,6 +51,28 @@ export async function getPopularTours() {
         return data.response?.body?.items?.item || [];
     } catch (error) {
         console.error("인기 데이터 호출 에러:", error);
+        return [];
+    }
+}
+
+/* 축제와 맛집 */
+export async function getToursByCategory(contentTypeId: string, limit: number = 6) {
+    const params = new URLSearchParams({
+        ...getCommonParams(),
+        pageNo: '1',
+        arrange: 'P',
+        contentTypeId: contentTypeId,
+        numOfRows: limit.toString(),
+    });
+
+    try {
+        const res = await fetch(`${BASE_URL}/areaBasedList2?${params.toString()}`, {
+            next: { revalidate: 3600 }
+        });
+        const data = await res.json();
+        return data.response?.body?.items?.item || [];
+    } catch (error) {
+        console.error("축제와 맛집 데이터 호출 에러:", error);
         return [];
     }
 }
@@ -94,6 +116,51 @@ export async function getTourDetail(contentId: string) {
     } catch (error) {
         console.error("상세 정보 호출 에러:", error);
         return null;
+    }
+}
+
+/* 상세 페이지의 기타 정보 */
+export async function getTourIntro(contentId: string, contentTypeId: string) {
+    const params = new URLSearchParams({
+        ...getCommonParams(),
+        contentId: contentId,
+        contentTypeId: contentTypeId,
+    });
+
+    try {
+        const res = await fetch(`${BASE_URL}/detailIntro2?${params.toString()}`, {
+            next: { revalidate: 3600 }
+        });
+        const data = await res.json();
+        return data.response?.body?.items?.item?.[0] || null;
+    } catch (error) {
+        console.error("상세 소개 호출 에러:", error);
+        return null;
+    }
+}
+
+/* 상세 페이지 주변 시설 추천 */
+export async function getNearbyToursByCategory(mapX: string, mapY: string, contentTypeId: string) {
+    const params = new URLSearchParams({
+        ...getCommonParams(),
+        numOfRows: '5',
+        pageNo: '1',
+        arrange: 'Q',
+        mapX: mapX,
+        mapY: mapY,
+        radius: '3000',
+        contentTypeId: contentTypeId,
+    });
+
+    try {
+        const res = await fetch(`${BASE_URL}/locationBasedList2?${params.toString()}`, {
+            next: { revalidate: 3600 }
+        });
+        const data = await res.json();
+        return data.response?.body?.items?.item || [];
+    } catch (error) {
+        console.error("주변 시설 호출 에러:", error);
+        return [];
     }
 }
 

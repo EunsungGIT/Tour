@@ -4,24 +4,31 @@ import styles from "./page.module.css";
 /* 컴포넌트 */
 import Card from '@/components/Card';
 import SearchInput from '@/components/SearchInput';
+import HomeSlider from "@/components/slider";
+import CurationTabs from "@/components/Curation";
 
 /* NEXT */
 import Link from "next/link";
 
 /* API */
-import { getPopularTours } from '@/lib/api';
+import { getPopularTours, getToursByCategory } from '@/lib/api';
 
-/* 인기 데이터 타입 지정 */
+/* 인기 데이터 타입 */
 interface TourItem {
   contentid: string;
   title: string;
   firstimage: string;
   addr1: string;
+  contenttypeid?: string;
 }
 
 export default async function Home() {
-  /* 인기 데이터 */
-  const tours: TourItem[] = await getPopularTours();
+  /* 인기 데이터 호출 및 타입 지정 */
+  const [popularTours, festivals, restaurants] = await Promise.all([
+    getPopularTours() as Promise<TourItem[]>,
+    getToursByCategory("15", 10) as Promise<TourItem[]>,
+    getToursByCategory("39", 6) as Promise<TourItem[]>,
+  ]);
 
   return (
     <main>
@@ -71,18 +78,23 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 인기 */}
+      {/* 키워드 */}
+      <CurationTabs />
+
+      {/* 인기 관광지 */}
       <section className={styles.recommend}>
-        <h3>✈️ 지금 인기 있는 관광지</h3>
+        <div className={styles.sectionHeader}>
+          <h3>✈️ 지금 인기 있는 관광지</h3>
+        </div>
         <div className={styles.cardGrid}>
-          {tours.length > 0 ? (
-            tours.map((tour) => (
+          {popularTours.length > 0 ? (
+            popularTours.map((item) => (
               <Card
-                key={tour.contentid}
-                id={tour.contentid}
-                title={tour.title}
-                image={tour.firstimage}
-                address={tour.addr1}
+                key={item.contentid}
+                id={item.contentid}
+                title={item.title}
+                image={item.firstimage}
+                address={item.addr1}
                 contentTypeId="12"
               />
             ))
@@ -90,6 +102,24 @@ export default async function Home() {
             <p>관광 정보를 불러오는 중입니다...</p>
           )}
         </div>
+      </section>
+
+      {/* 인기 축제 */}
+      <section className={styles.festivalSection}>
+        <div className={styles.sectionHeader}>
+          <h3>🎊 지금 가야 할 축제</h3>
+          <Link href="/list?type=15" className={styles.moreBtn}>더보기</Link>
+        </div>
+        <HomeSlider items={festivals} defaultType="15" />
+      </section>
+
+      {/* 맛집 */}
+      <section className={styles.recommend}>
+        <div className={styles.sectionHeader}>
+          <h3>🍚 실패 없는 지역 맛집</h3>
+          <Link href="/list?type=39" className={styles.moreBtn}>더보기</Link>
+        </div>
+        <HomeSlider items={restaurants} defaultType="39" />
       </section>
     </main>
   );

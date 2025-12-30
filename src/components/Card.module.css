@@ -2,59 +2,86 @@
   display: block;
   text-decoration: none;
   background: #fff;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
-  transition: transform 0.3s ease;
-  border: 1px solid #f2f2f2;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .imageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
+  background-color: #f5f5f5;
 }
 
 .image {
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .card:hover .image {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .badge {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 12px;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+}
+
+.footer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
 }
 
 .info {
-  padding: 15px;
+  padding: 16px 12px 20px;
 }
 
 .address {
-  font-size: 14px;
-  color: #999;
-  margin-bottom: 10px;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 6px;
+  font-weight: 400;
 }
 
 .title {
-  font-weight: bold;
-  color: #333;
-  white-space: nowrap;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .info {
+    padding: 12px 8px 16px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
 }

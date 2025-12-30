@@ -41,9 +41,16 @@ export default function FullMap({ items }: { items: MapItem[] }) {
         /* 마커 생성 */
         items.forEach((item) => {
           const position = new window.kakao.maps.LatLng(Number(item.mapy), Number(item.mapx));
+
+          /* 마커 이미지 */
+          const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+          const imageSize = new window.kakao.maps.Size(24, 35);
+          const markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
+
           const marker = new window.kakao.maps.Marker({
             position: position,
             map: map,
+            image: markerImage, // 이 한 줄이 추가됩니다!
           });
 
           const infowindow = new window.kakao.maps.InfoWindow({

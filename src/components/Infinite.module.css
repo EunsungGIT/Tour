@@ -1,53 +1,84 @@
 .cardGrid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-}
-
-.noCard {
-    text-align: center;
-    padding: 100px 0;
-    font-size: 18px;
-    color: #999;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 32px 24px;
 }
 
 .actionArea {
-    padding: 50px 0;
+    padding: 80px 0;
     text-align: center;
 }
 
 .loadMoreBtn {
-    padding: 15px 60px;
+    padding: 16px 80px;
     background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 30px;
-    font-size: 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 50px;
+    font-size: 15px;
     font-weight: 700;
+    color: #333;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.loadMoreBtn:hover {
-    background-color: #f8f8f8;
+.loadMoreBtn:hover:not(:disabled) {
+    background-color: #fff;
     border-color: #F7323F;
     color: #F7323F;
+    box-shadow: 0 6px 16px rgba(247, 50, 63, 0.12);
+    transform: translateY(-2px);
+}
+
+.loadMoreBtn:disabled {
+    background-color: #f9f9f9;
+    border-color: #eee;
+    color: #ccc;
+    cursor: not-allowed;
 }
 
 .noMore {
-    color: #999;
+    color: #bbb;
     font-size: 15px;
+    font-weight: 500;
+    position: relative;
+    display: inline-block;
+}
+
+.noMore::before,
+.noMore::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background-color: #eee;
+}
+
+.noMore::before {
+    right: 110%;
+}
+
+.noMore::after {
+    left: 110%;
 }
 
 /* 반응형 */
 @media (max-width: 1024px) {
     .cardGrid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 24px 20px;
     }
 }
 
 @media (max-width: 768px) {
     .cardGrid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        gap: 24px 12px;
+    }
+
+    .loadMoreBtn {
+        width: 100%;
+        padding: 16px 0;
     }
 }

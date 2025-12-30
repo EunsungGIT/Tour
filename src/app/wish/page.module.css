@@ -1,51 +1,70 @@
 .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 60px 24px;
 }
 
 .title {
-    font-size: 24px;
-    font-weight: 700;
-    margin: 40px 0 20px;
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 32px;
+    letter-spacing: -1px;
 }
 
 .cardGrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
+    gap: 32px 24px;
 }
 
 .loading {
     text-align: center;
-    padding: 100px 0;
+    padding: 150px 0;
+    color: #999;
+    font-weight: 500;
 }
 
 .empty,
 .noUser {
     text-align: center;
-    padding: 120px 0;
-    background: #f9f9f9;
-    border-radius: 20px;
-    margin-top: 40px;
+    padding: 100px 24px;
+    background: #fff;
+    border: 1px solid #f1f1f1;
+    border-radius: 24px;
+    margin-top: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
 }
 
 .empty p,
 .noUser p {
     font-size: 18px;
-    color: #666;
-    margin-bottom: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 24px;
+    line-height: 1.5;
 }
 
 .goHome,
 .goLogin {
-    display: inline-block;
-    padding: 12px 30px;
-    background: #ff2d46;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 40px;
+    background: #F7323F;
     color: white;
-    border-radius: 30px;
-    font-weight: bold;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
     text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.goHome:hover,
+.goLogin:hover {
+    background: #e0283d;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(247, 50, 63, 0.2);
 }
 
 /* 반응형 */
@@ -56,7 +75,27 @@
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 40px 20px;
+    }
+
+    .title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
     .cardGrid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 24px 12px;
+    }
+
+    .empty,
+    .noUser {
+        padding: 60px 20px;
+    }
+
+    .goHome,
+    .goLogin {
+        width: 100%;
     }
 }

@@ -1,52 +1,94 @@
 .mapPageWrapper {
   display: flex;
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 72px); /* 개선된 헤더 높이에 맞춤 */
   overflow: hidden;
+  background-color: #fff;
 }
 
 .sideList {
-  width: 350px;
+  width: 380px; /* 살짝 넓혀서 여유 공간 확보 */
   height: 100%;
-  border-right: 1px solid #eee;
+  border-right: 1px solid #f1f1f1;
   display: flex;
   flex-direction: column;
   background: white;
   z-index: 10;
+  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.02);
 }
 
 .listHeader {
-  padding: 20px;
-  border-bottom: 1px solid #eee;
+  padding: 24px;
+  background: #fff;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 .listHeader h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
 }
 
-.itemTitle {
+.listHeader p {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 16px;
+}
+
+/* 재검색 버튼: 여기어때 스타일의 레드 보더 버튼 */
+.refreshBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #fff;
+  color: #F7323F;
+  border: 1px solid #F7323F;
+  border-radius: 10px;
+  cursor: pointer;
   font-weight: 700;
-  font-size: 16px;
-  margin: 5px 0;
-  color: #000;
+  font-size: 14px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
-.itemAddr {
-  font-size: 13px;
-  color: #888;
-  margin-bottom: 5px;
+.refreshBtn:hover:not(:disabled) {
+  background-color: #fff1f2;
 }
 
-.dist {
-  font-size: 13px;
-  color: #888;
+.refreshBtn:disabled {
+  border-color: #eee;
+  color: #ccc;
+  cursor: not-allowed;
 }
 
-.category {
-  font-size: 11px;
-  color: #ff2d46;
-  font-weight: bold;
+.scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #fcfcfc; /* 아주 연한 배경색으로 카드 강조 */
+}
+
+/* 리스트 아이템: 그림자를 줄이고 깔끔한 보더와 화이트 레이아웃 */
+.listItem {
+  display: block;
+  background-color: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid #f1f1f1;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.listItem:hover {
+  border-color: #F7323F;
+  box-shadow: 0 8px 20px rgba(247, 50, 63, 0.08);
+  transform: translateY(-2px);
 }
 
 .mapContainer {
@@ -54,106 +96,56 @@
   position: relative;
 }
 
-.refreshBtn {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.2s;
-}
-
-.refreshBtn:hover {
-  background-color: #0056b3;
-}
-
-.refreshBtn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.scrollArea {
-  flex: 1;
-  overflow-y: auto;
-  padding: 10px;
-  background-color: #f9f9f9;
-}
-
-.listItem {
-  display: block;
-  background-color: white;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 12px;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.listItem:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 1px solid #007bff;
-}
-
 .category {
   display: inline-block;
   font-size: 11px;
-  font-weight: bold;
-  color: #007bff;
-  background-color: #e7f1ff;
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-bottom: 8px;
+  font-weight: 700;
+  color: #F7323F;
+  background-color: #fff1f2;
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
 }
 
 .itemTitle {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
-  margin-bottom: 4px;
-  color: #333;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-bottom: 6px;
+  color: #1a1a1a;
+  line-height: 1.4;
 }
 
 .itemAddr {
   font-size: 13px;
-  color: #666;
-  margin-bottom: 6px;
+  color: #777;
+  margin-bottom: 10px;
+  line-height: 1.4;
 }
 
 .dist {
-  font-size: 12px;
-  font-weight: 600;
-  color: #ff5a5f;
-}
-
-.loadingBox, .noData {
+  font-size: 13px;
+  font-weight: 700;
+  color: #F7323F; /* 거리 정보를 강조 */
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 200px;
-  color: #888;
-  font-size: 14px;
-  text-align: center;
+  gap: 4px;
 }
 
+.dist::before {
+  content: '📍';
+  font-size: 11px;
+}
+
+/* 스크롤바 커스텀 */
 .scrollArea::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 .scrollArea::-webkit-scrollbar-thumb {
-  background-color: #ccc;
+  background-color: #e5e5e5;
   border-radius: 10px;
 }
 
-/* 반응형 */
+/* 모바일 대응: 여기어때 앱처럼 하단 시트 느낌 */
 @media (max-width: 768px) {
   .mapPageWrapper {
     flex-direction: column-reverse;
@@ -161,6 +153,14 @@
 
   .sideList {
     width: 100%;
-    height: 40%;
+    height: 45%;
+    border-right: none;
+    border-top: 1px solid #eee;
+    border-radius: 24px 24px 0 0; /* 모바일 하단 시트 느낌 */
+    margin-top: -20px; /* 지도 위로 살짝 올라오게 */
+  }
+
+  .listHeader {
+    padding: 16px 20px;
   }
 }

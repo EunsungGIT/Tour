@@ -1,3 +1,5 @@
+'use client';
+
 /* NEXT */
 import Image from 'next/image';
 import Link from 'next/link';
@@ -5,7 +7,10 @@ import Link from 'next/link';
 /* CSS */
 import styles from './Card.module.css';
 
-/* LIKE 컴포넌트 */
+/* REACT */
+import { useState } from 'react';
+
+/* 컴포넌트 */
 import Like from './Like';
 
 /* API에서 오는 숫자코드를 한글로 변환 */
@@ -33,15 +38,23 @@ export default function Card({ id, title, image, address, contentTypeId }: CardP
     /* 숫자코드에 따른 삼항연산자로 한글로 변환 */
     const categoryName = contentTypeId ? CATEGORY_MAP[contentTypeId] : null;
 
+    /* 이미지 값의 에러 여부 */
+    const [imgSrc, setImgSrc] = useState(image || '/images/logo.png');
+
     return (
         <Link href={`/detail/${id}`} className={styles.card}>
             <div className={styles.imageWrapper}>
                 <Image
-                    src={image || '/img/icons/logo.png'}
+                    src={imgSrc}
                     alt={title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className={styles.image}
+
+                    /* 이미지 로드 에러 시 로드할 이미지 */
+                    onError={() => {
+                        setImgSrc('/images/logo.png');
+                    }}
                 />
                 {categoryName && <span className={styles.badge}>{categoryName}</span>}
             </div>
