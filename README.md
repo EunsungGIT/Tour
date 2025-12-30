@@ -23,7 +23,7 @@
 - **Framework**: Next.js (App Router)
 - **Language**: TypeScript
 - **Styling**: CSS Modules
-- **Library**: Framer Motion (Animation)
+- **Library**: Swiper (Slider), Framer Motion (Animation)
 
 ### Backend & API
 - **Backend**: Firebase (Authentication, Firestore)
@@ -36,20 +36,39 @@
 
 ### 1. 위치 기반 실시간 주변 탐색 (`/map`)
 - **Geolocation API**: 브라우저의 현재 좌표를 획득하여 실시간 위치 서비스 제공.
-- **다중 마커 렌더링**: 반경 5km 이내의 관광지 데이터를 가져와 지도상에 마커로 시각화하고, 리스트와 연동하여 사용자 인터랙션 강화.
+- **다중 마커 렌더링**: `useRef`를 활용해 지도 인스턴스를 유지하며 반경 5km 이내의 데이터를 마커로 시각화하여 고성능 지도 UI 구현.
 
-### 2. 효율적인 데이터 페칭 및 보안
-- **Mixed Content 해결**: 공공데이터의 HTTP 응답 문제를 HTTPS 엔드포인트 강제 전환 및 프록시 설정을 통해 해결하여 보안 연결 환경 구축.
-- **API 보안**: API Key 및 Firebase 설정값을 환경 변수(`.env`)로 분리하여 클라이언트 노출을 방지하고 Vercel 배포 환경에서 안전하게 관리.
-- **ISR (Incremental Static Regeneration)**: 자주 바뀌지 않는 인기 데이터에 `revalidate` 옵션을 적용하여 서버 부하 감소 및 렌더링 성능 최적화.
+### 2. 데이터 주도형 상세 정보 큐레이션 (`/detail`)
+- **동적 필드 매핑 로직**: 관광 타입별로 상이한 응답 필드(주차, 애견동반 등)를 `FieldMap` 객체로 구조화하여 중복 없는 선언적 렌더링 구현.
+- **문맥 기반 주변 정보 추천**: 현재 장소의 좌표를 기반으로 주변 맛집, 숙소 등을 실시간 API로 호출하는 `Near` 컴포넌트 구현.
 
 ### 3. 실시간 유저 데이터 동기화
 - **Auth Guard**: `onAuthStateChanged`를 통해 유저 인증 상태를 추적하고, 비로그인 유저의 기능 접근 제한 및 UX 분기 처리.
-- **Real-time Sync**: Firestore의 `onSnapshot` 리스너를 활용해 사용자가 찜 버튼을 누르는 즉시 `Wishlist` 페이지와 데이터가 실시간으로 동기화되도록 구현.
+- **Real-time Sync**: Firestore의 `onSnapshot` 리스너를 활용해 사용자가 찜 버튼을 누르는 즉시 `Wishlist` 페이지와 실시간 데이터 동기화.
 
-### 4. 반응형 UI/UX 디자인
-- **Mobile-First**: 모바일 사용성을 최우선으로 고려한 레이아웃 설계 및 햄버거 메뉴 구현.
-- **User Feedback**: 데이터 로딩 중 `loading.tsx`를 제공하여 사용자가 느끼는 대기 시간을 심리적으로 단축.
+### 4. 효율적인 데이터 페칭 및 보안
+- **API 보안**: API Key 및 Firebase 설정값을 환경 변수(`.env`)로 관리하여 클라이언트 노출 방지.
+- **성능 최적화**: 자주 바뀌지 않는 데이터에 `revalidate` 옵션을 적용하여 서버 부하 감소 및 렌더링 속도 개선.
+
+---
+
+### 💡 Technical Challenges & Solutions
+
+- **Next.js 비동기 파라미터**: Server Components에서 `params`와 `searchParams`를 Promise 타입으로 다루는 최신 스펙을 적용하여 데이터 안정성 확보.
+- **메모리 관리 (Memory Leak)**: 실시간 리스너(`onSnapshot`, `onAuthStateChanged`) 사용 시, 컴포넌트 언마운트 시점에 구독 해제(Unsubscribe)를 명시하여 자원 낭비 방지.
+- **반응형 애니메이션**: CSS `transform`과 `transition`을 활용하여 모바일 네비게이션의 슬라이드 효과를 구현하고, 가로 스크롤 이슈를 `overflow-x: hidden`으로 해결.
+
+---
+
+### 🛠 Trouble Shooting
+
+#### 1. 공공데이터 API 이미지 엑박(Broken Image) 처리
+- **문제**: API에서 제공하는 일부 이미지 URL이 만료되어 UI에 엑박(Broken Link)이 노출되는 문제 발생.
+- **해결**: 데이터 바인딩 단계에서 `firstimage` 유무를 체크하고, 이미지 로드 실패 시 준비된 로고 이미지를 표시하도록 `Fallback` 로직을 구현하여 시각적 일관성 유지.
+
+#### 2. Mixed Content (HTTP/HTTPS) 보안 이슈
+- **문제**: HTTPS 배포 환경에서 HTTP API 호출 시 브라우저 보안 정책으로 인해 요청이 차단됨.
+- **해결**: API 엔드포인트를 HTTPS로 강제 전환하고, 서버 컴포넌트에서 데이터 패칭을 수행하여 브라우저 규제를 우회함과 동시에 보안성 강화.
 
 ---
 
@@ -84,6 +103,9 @@ src/
 │   ├── Header.tsx              # 상단 네비게이션 (Header.module.css 포함)
 │   ├── Infinite.tsx            # 무한 스크롤 처리 컴포넌트
 │   ├── Like.tsx                # 찜하기 버튼 및 로직
+│   ├── Near.tsx       # 상세 페이지 내 반경 기반 주변 시설 추천
+│   ├── Curation.tsx        # 메인 페이지 테마별 큐레이션 키워드 칩
+│   ├── Slider.tsx          # Swiper 기반의 메인 섹션 슬라이더
 │   └── SearchInput.tsx         # 검색창 입력 컴포넌트
 └── lib/                        # 외부 서비스 라이브러리 설정
     ├── api.ts                  # 한국관광공사 TourAPI 호출 로직

@@ -4,8 +4,8 @@ import styles from "./page.module.css";
 /* 컴포넌트 */
 import Card from '@/components/Card';
 import SearchInput from '@/components/SearchInput';
-import HomeSlider from "@/components/slider";
 import CurationTabs from "@/components/Curation";
+import HomeSlider from "@/components/Slider";
 
 /* NEXT */
 import Link from "next/link";

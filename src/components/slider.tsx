@@ -11,7 +11,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 
 /* CSS */
-import './slider.module.css';
+import './Slider.module.css';
 
 /* 부모 컴포넌트에서 받아온 api 데이터 타입 지정 */
 interface TourItem {

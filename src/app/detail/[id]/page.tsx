@@ -1,6 +1,3 @@
-/* NEXT */
-import Image from 'next/image';
-
 /* CSS */
 import styles from './page.module.css';
 
@@ -11,6 +8,7 @@ import { getTourDetail, getTourIntro } from '@/lib/api';
 import DetailMap from '@/components/DetailMap';
 import NearbySection from '@/components/Near';
 import LikeButton from '@/components/Like';
+import DetailImage from '@/components/DetailImage';
 
 /* 숫자코드 별로 들어갈 데이터 타입 */
 interface FieldDefinition {
@@ -74,19 +72,16 @@ export default async function DetailPage({ params }: { params: Promise<{ id: str
     /* 데이터가 없을 경우 메세지 */
     if (!data) return <div className={styles.error}>데이터를 찾을 수 없습니다.</div>;
 
-    // ⭐️ 중요: 함수를 호출할 때 intro 데이터와 타입을 전달합니다.
+    /* intro의 데이터와 숫자코드를 전달 */
     const quickInfo = getQuickInfo(intro, data.contenttypeid);
 
     return (
         <div className={styles.container}>
             {/* 배너 */}
             <div className={styles.hero}>
-                <Image
-                    src={data.firstimage || '/img/icons/logo.png'}
-                    alt={data.title}
-                    fill
-                    priority
-                    className={styles.mainImage}
+                <DetailImage
+                    src={data.firstimage}
+                    title={data.title}
                 />
                 <div className={styles.heroOverlay}>
                     <div className={styles.titleBox}>
