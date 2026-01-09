@@ -30,8 +30,7 @@ export default function Footer() {
             <div className={styles.linkGroup}>
               <h4>Contact</h4>
               {/* 외부링크는 a태그 사용 */}
-              <a href="https://github.com/EunsungGIT" target="_blank">GitHub</a>
-              <a href="https://your-blog.com" target="_blank">Notion</a>
+              <a href="https://github.com/EunsungGIT/Tour" target="_blank">GitHub</a>
             </div>
           </div>
         </div>
